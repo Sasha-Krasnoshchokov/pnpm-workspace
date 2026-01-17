@@ -1,6 +1,12 @@
 <h1>pnpm Workspace: Production-ready Docker & Node.js Starter Kit</h1>
 
+This monorepo starter kit enforces consistency across services.
+It follows a "Base Config" pattern, where apps inherit shared TypeScript, ESLint,
+and Prettier configurations from a centralized <code>packages/config</code> directory,
+eliminating configuration drift.
 
+To ensure an optimal balance of speed, safety, and CI performance the workspace utilizes
+the pnpm package manager.
 
 <details>
   <summary><h3>Commit convention</h3></summary>
@@ -51,4 +57,3 @@
     </ul>
   </details>
 </details>
-
