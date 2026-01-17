@@ -1,8 +1,13 @@
 {
   "name": "@repo/client",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
+  "scripts": {
+    "lint": "eslint"
+  },
   "devDependencies": {
-    "@repo/tsconfig": "workspace:*"
+    "@repo/tsconfig": "workspace:*",
+    "@eslint/js": "^9.0.0"
   }
 }

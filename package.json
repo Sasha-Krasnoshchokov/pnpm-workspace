@@ -8,8 +8,8 @@
     "dev": "pnpm -r --parallel run dev",
     "dev:client": "pnpm --filter client run dev",
     "dev:server": "pnpm --filter server run dev",
-    "lint": "pnpm -r run lint --if-present",
-    "test": "pnpm -r run test --if-present",
+    "lint": "pnpm --if-present -r run lint",
+    "test": "pnpm --if-present -r run test",
     "build": "pnpm -r run build",
     "type-check": "pnpm -r --filter \"!@repo/tsconfig\" exec tsc --noEmit",
     "clean": "pnpm -r exec rm -rf node_modules dist .turbo"
@@ -21,7 +21,9 @@
   "devDependencies": {
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
+    "eslint": "catalog:",
     "husky": "^9.1.7",
+    "prettier": "^3.8.0",
     "typescript": "catalog:"
   }
 }

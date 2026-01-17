@@ -1,7 +1,8 @@
 packages:
-  - "apps/*"
-  - "packages/*"
-  - "services/*"
+  - 'apps/*'
+  - 'packages/*'
+  - 'services/*'
 
 catalog:
   typescript: ^5.4.0
+  eslint: ^9.39.2
