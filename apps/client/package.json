@@ -1,0 +1,8 @@
+{
+  "name": "@repo/client",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*"
+  }
+}
