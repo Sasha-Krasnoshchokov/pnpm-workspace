@@ -2,7 +2,11 @@
   <summary><h3>Commit convention</h3></summary>
   <p>To unify commit writing, this project uses <b>Husky</b> and <b>Commitlint</b>.</p>
   <p><b>Structure:</b>&nbsp;<code>type(scope?): subject description</code></p>
-  <table>
+  <details>
+    <summary>
+      <b>List of the commit types</b>
+    </summary>
+    <table>
     <thead>
       <tr>
         <th>Commit type</th>
@@ -20,7 +24,12 @@
       <tr><td><code>ci</code></td><td>CI/CD pipeline and script improvements</td></tr>
     </tbody>
   </table>
-  <table>
+  </details>
+    <details>
+    <summary>
+      <b>List of the scope examples</b>
+    </summary>
+      <table>
     <thead>
       <tr>
         <th>Scope</th>
@@ -36,6 +45,7 @@
       <tr><td><code>github</code></td><td>GitHub Actions or repository settings</td></tr>
     </tbody>
   </table>
+    </details>
   <details>
     <summary><b>View Examples</b></summary>
     <ul>
