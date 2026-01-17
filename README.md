@@ -6,7 +6,7 @@ and Prettier configurations from a centralized <code>packages/config</code> dire
 eliminating configuration drift.
 
 To ensure an optimal balance of speed, safety, and CI performance the workspace utilizes
-the pnpm package manager.
+the <code>pnpm</code> package manager.
 
 <details>
   <summary><h3>Commit convention</h3></summary>
