@@ -11,7 +11,7 @@
     "lint": "pnpm --if-present -r run lint",
     "test": "pnpm --if-present -r run test",
     "build": "pnpm -r run build",
-    "type-check": "pnpm -r --filter \"!@repo/tsconfig\" exec tsc --noEmit",
+    "typecheck": "pnpm -r --if-present typecheck",
     "clean": "pnpm -r exec rm -rf node_modules dist .turbo"
   },
   "keywords": [],
