@@ -1,6 +1,4 @@
-import 'reflect-metadata';
 import app from './app';
-// import { AppDataSource } from './config/data-source';
 import { env } from './config/env';
 
 const { PORT, NODE_ENV } = env;
