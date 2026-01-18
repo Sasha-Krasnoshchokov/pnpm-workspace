@@ -15,10 +15,10 @@ You can run workspace-wide commands from the root directory to ensure consistenc
 
 | Command              | Task                                        |
 | :------------------- | :------------------------------------------ |
-| `pnpm run lint`      | Run ESLint across the entire workspace      |
-| `pnpm run typecheck` | Validate TypeScript types in all packages   |
-| `pnpm run test`      | Execute vitest/jest suites for all services |
-| `pnpm run build`     | Build all apps                              |
+| `pnpm lint`      | Run ESLint across the entire workspace      |
+| `pnpm typecheck` | Validate TypeScript types in all packages   |
+| `pnpm test`      | Execute vitest/jest suites for all services |
+| `pnpm build`     | Build all apps                              |
 
 </details>
 
