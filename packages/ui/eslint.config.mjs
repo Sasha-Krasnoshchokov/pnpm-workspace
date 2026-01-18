@@ -1,8 +1,8 @@
-import baseConfig from "@repo/eslint-config";
+import baseConfig from '../eslint-config/base.js';
 
 export default [
   ...baseConfig,
   {
     // Package-specific overrides
-  }
+  },
 ];

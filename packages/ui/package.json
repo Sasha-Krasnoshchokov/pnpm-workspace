@@ -1,11 +1,13 @@
 {
   "name": "@repo/ui",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
   "exports": {
     ".": "./src/index.ts"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "vitest run"
   },
   "devDependencies": {
