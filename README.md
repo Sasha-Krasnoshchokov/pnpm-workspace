@@ -9,6 +9,20 @@ To ensure an optimal balance of speed, safety, and CI performance the workspace 
 the <code>pnpm</code> package manager.
 
 <details>
+  <summary>🚀 Global Development Commands</summary>
+
+You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
+
+| Command              | Task                                        |
+| :------------------- | :------------------------------------------ |
+| `pnpm run lint`      | Run ESLint across the entire workspace      |
+| `pnpm run typecheck` | Validate TypeScript types in all packages   |
+| `pnpm run test`      | Execute vitest/jest suites for all services |
+| `pnpm run build`     | Build all apps                              |
+
+</details>
+
+<details>
   <summary><h3>Commit convention</h3></summary>
   <p>To unify commit writing, this project uses <b>Husky</b> and <b>Commitlint</b>.</p>
   <p><b>Structure:</b>&nbsp;<code>type(scope?): subject description</code></p>
