@@ -13,12 +13,12 @@ the <code>pnpm</code> package manager.
 
 You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
 
-| Command          | Task                                        |
-| :--------------- | :------------------------------------------ |
-| `pnpm lint`      | Run ESLint across the entire workspace      |
-| `pnpm typecheck` | Validate TypeScript types in all packages   |
-| `pnpm test`      | Execute vitest/jest suites for all services |
-| `pnpm build`     | Build all apps                              |
+| Command          | Task                                                          |
+| :--------------- | :------------------------------------------------------------ |
+| `pnpm lint`      | Runs ESLint using the shared `packages/config`.               |
+| `pnpm typecheck` | Validates TypeScript across all apps (skips non-TS packages). |
+| `pnpm test`      | Execute vitest/jest suites for all services                   |
+| `pnpm build`     | Build all apps                                                |
 
 </details>
 
