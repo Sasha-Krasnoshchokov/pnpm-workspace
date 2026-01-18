@@ -7,12 +7,15 @@
     "prepare": "husky",
     "dev": "pnpm -r --parallel run dev",
     "dev:client": "pnpm --filter client run dev",
-    "dev:server": "pnpm --filter server run dev",
     "lint": "pnpm --if-present -r run lint",
     "test": "pnpm --if-present -r run test",
     "build": "pnpm -r run build",
     "typecheck": "pnpm -r --if-present typecheck",
-    "clean": "pnpm -r exec rm -rf node_modules dist .turbo"
+    "dev:server": "pnpm --filter @repo/server dev",
+    "dev:server:watch": "pnpm --filter @repo/server dev:watch",
+    "build:server": "pnpm --filter @repo/server build",
+    "docker:build": "docker build --target development -t repo-server:dev -f apps/server/Dockerfile .",
+    "docker:run": "docker run -p 3210:3210 repo-server:dev"
   },
   "keywords": [],
   "author": "",
