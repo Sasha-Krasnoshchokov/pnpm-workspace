@@ -16,6 +16,7 @@ the <code>pnpm</code> package manager.
   Ensure you have the following installed:
   - [Docker](https://www.docker.com/)
   - [pnpm](https://pnpm.io/installation) (v8+ recommended)
+  
   ### Setup Steps
   1. **Clone the repository**
   ```bash
@@ -30,7 +31,7 @@ the <code>pnpm</code> package manager.
   ```bash
   cd pnpm-workspace && pnpm install
   ```
-  4. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) file into the `apps/server` folder**
+  3. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder**
   - NODE_ENV=development/production
   - PORT=3210
   - SERVER_BASE_URL=http://localhost
