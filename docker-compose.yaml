@@ -1,0 +1,21 @@
+services:
+  server-dev:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+      target: development
+    container_name: server-dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/server/node_modules
+    env_file:
+      - apps/server/.env.local
+    ports:
+      - 3210:3210
+    environment:
+      - NODE_ENV=development
+      - PORT=3210
+    command: pnpm --filter @repo/server dev:watch
+
+  # server-prod:
