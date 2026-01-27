@@ -28,7 +28,7 @@ the <code>pnpm</code> package manager.
   ```
   2. **Install dependencies from the root directory**
   ```bash
-  $ cd pnpm-workspace && pnpm install
+  cd pnpm-workspace && pnpm install
   ```
   4. **Environment Setup `.env`**
   - NODE_ENV=
@@ -44,7 +44,7 @@ the <code>pnpm</code> package manager.
     
   ```bash
   # Runs ESLint using the shared `packages/config`.
-  $ pnpm lint
+  pnpm lint
   ```
   ```bash
   # Validates TypeScript across all apps (skips non-TS packages).
