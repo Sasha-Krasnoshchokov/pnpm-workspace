@@ -16,6 +16,8 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3210
-    command: pnpm --filter @repo/server dev:watch
+      - TSX_LOADER_FALLBACK=1
+      - CHOKIDAR_USEPOLLING=1
+      - CHOKIDAR_INTERVAL=100
 
   # server-prod:
