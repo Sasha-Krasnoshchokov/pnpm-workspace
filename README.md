@@ -9,7 +9,7 @@ To ensure an optimal balance of speed, safety, and CI performance the workspace 
 the <code>pnpm</code> package manager.
 
 <details open>
-  <summary><h3>🚀 How to deploy locally</h3>h3></summary>
+  <summary><h3>🚀 How to deploy locally</h3></summary>
   
   ### Prerequisites
   
