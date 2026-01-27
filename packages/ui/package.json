@@ -3,12 +3,9 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "exports": {
-    ".": "./src/index.ts"
-  },
   "scripts": {
-    "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*"
