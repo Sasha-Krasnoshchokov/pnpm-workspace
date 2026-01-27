@@ -42,7 +42,7 @@ the <code>pnpm</code> package manager.
   <details>
   <summary>Commands</summary>
   
-  **Run first two commands to make sure the dependencies are installed correctly**
+  **Run the first two commands to make sure the dependencies are installed correctly**
   ```bash
   # Runs ESLint using the shared `packages/config`.
   pnpm lint
