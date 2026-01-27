@@ -30,8 +30,8 @@ the <code>pnpm</code> package manager.
   ```bash
   cd pnpm-workspace && pnpm install
   ```
-  4. **Environment Setup: add the `.env` file into the apps/server folder**
-  - NODE_ENV=development
+  4. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) file into the `apps/server` folder**
+  - NODE_ENV=development/production
   - PORT=3210
   - SERVER_BASE_URL=http://localhost
   - API_PREFIX=/api/v1
