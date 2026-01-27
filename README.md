@@ -40,8 +40,6 @@ the <code>pnpm</code> package manager.
 
 You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
 
-<details>
-
 **Run the first two commands to make sure the dependencies are installed correctly**
 
 ```bash
