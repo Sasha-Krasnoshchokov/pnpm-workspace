@@ -8,40 +8,58 @@ eliminating configuration drift.
 To ensure an optimal balance of speed, safety, and CI performance the workspace utilizes
 the <code>pnpm</code> package manager.
 
-<details>
-  <summary>🚀 How to deploy locally</summary>
+<details open>
+  <summary><h3>🚀 How to deploy locally</h3>h3></summary>
+  
   ### Prerequisites
+  
   Ensure you have the following installed:
   - [Docker](https://www.docker.com/)
   - [pnpm](https://pnpm.io/installation) (v8+ recommended)
   ### Setup Steps
   1. **Clone the repository**
   ```bash
-    # Using SSH (Recommended for contributors)
-    git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
-    # Or using HTTPS
-    git clone [https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git](https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git)
+  # Using SSH (Recommended for contributors)
+  git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
   ```
-  2. Install dependencies from the root directory
-    ```bash
-    $ cd pnpm-workspace && pnpm install
-    ```
-  3. Environment Setup `.env`
+  ```bash
+  # Or using HTTPS
+  git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
+  ```
+  2. **Install dependencies from the root directory**
+  ```bash
+  $ cd pnpm-workspace && pnpm install
+  ```
+  4. **Environment Setup `.env`**
   - NODE_ENV=
   - PORT=
   - SERVER_BASE_URL=http://localhost
   - API_PREFIX=/api/v1
-</details>
 
-<details>
-  <summary>Global Development Commands</summary>
+  ### Global Development Commands
   You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
-  | Command          | Task                                                          |
-  | :--------------- | :------------------------------------------------------------ |
-  | `pnpm lint`      | Runs ESLint using the shared `packages/config`.               |
-  | `pnpm typecheck` | Validates TypeScript across all apps (skips non-TS packages). |
-  | `pnpm test`      | Execute vitest/jest suites for all services                   |
-  | `pnpm build`     | Build all apps                                                |
+  
+  <details>
+  <summary>Commands</summary>
+    
+  ```bash
+  # Runs ESLint using the shared `packages/config`.
+  $ pnpm lint
+  ```
+  ```bash
+  # Validates TypeScript across all apps (skips non-TS packages).
+  pnpm typecheck
+  ```
+  ```bash
+  # Execute vitest/jest suites for all services.
+  pnpm test
+  ```
+  ```bash
+  # Build all apps.
+  pnpm build
+  ```
+  </details>
+  
 </details>
 
 <details>
