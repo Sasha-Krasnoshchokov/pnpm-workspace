@@ -31,8 +31,8 @@ the <code>pnpm</code> package manager.
   cd pnpm-workspace && pnpm install
   ```
   4. **Environment Setup `.env`**
-  - NODE_ENV=
-  - PORT=
+  - NODE_ENV=development
+  - PORT=3000
   - SERVER_BASE_URL=http://localhost
   - API_PREFIX=/api/v1
 
@@ -41,7 +41,8 @@ the <code>pnpm</code> package manager.
   
   <details>
   <summary>Commands</summary>
-    
+  
+  **Run first two commands to make sure the dependencies are installed correctly**
   ```bash
   # Runs ESLint using the shared `packages/config`.
   pnpm lint
