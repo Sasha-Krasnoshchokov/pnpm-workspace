@@ -38,7 +38,7 @@ git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
 cd pnpm-workspace && pnpm install
 ```
 
-3. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder**
+3. **Environment Setup:** add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder
 
 - NODE_ENV=development/production
 - PORT=3210
@@ -73,7 +73,7 @@ docker compose up server-dev --build
 pnpm docker:build && pnpm docker:run
 ```
 
-### Paste `http://localhost:3210/health` into your browser address to make sure the server is running
+5. **Paste** `http://localhost:3210/health` **into your browser address to make sure the server is running**
 
 </details>
 
