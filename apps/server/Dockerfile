@@ -46,7 +46,7 @@ EXPOSE $PORT
 
 # Healthcheck using the curl installed in base
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD curl -f http://localhost:$PORT/health || exit 1
+  CMD curl -f $SERVER_BASE_URL:$PORT/health || exit 1
 
 # Increased memory limit slightly for Node 20 stability
 CMD ["node", "--max-old-space-size=512", "dist/server.js"]
