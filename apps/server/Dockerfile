@@ -25,7 +25,7 @@ ENV NODE_ENV=development
 ENV PORT=3210
 EXPOSE 3210
 WORKDIR /app/apps/server
-CMD ["pnpm", "dev:watch"]
+CMD ["pnpm", "--filter @repo/server", "dev:watch"]
 
 FROM node:20-alpine AS production
 ENV NODE_ENV=production

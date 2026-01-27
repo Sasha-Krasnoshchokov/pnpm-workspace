@@ -9,33 +9,41 @@ To ensure an optimal balance of speed, safety, and CI performance the workspace 
 the <code>pnpm</code> package manager.
 
 <details open>
-  <summary><h3>🚀 How to deploy locally</h3></summary>
-  
-  ### Prerequisites
-  
-  Ensure you have the following installed:
-  - [Docker](https://www.docker.com/)
-  - [pnpm](https://pnpm.io/installation) (v8+ recommended)
-  
-  ### Setup Steps
-  1. **Clone the repository**
-  ```bash
-  # Using SSH (Recommended for contributors)
-  git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
-  ```
-  ```bash
-  # Or using HTTPS
-  git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
-  ```
-  2. **Install dependencies from the root directory**
-  ```bash
-  cd pnpm-workspace && pnpm install
-  ```
-  3. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder**
-  - NODE_ENV=development/production
-  - PORT=3210
-  - SERVER_BASE_URL=http://localhost
-  - API_PREFIX=/api/v1
+<summary><h3>🚀 How to deploy locally</h3></summary>
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- [Docker](https://www.docker.com/)
+- [pnpm](https://pnpm.io/installation) (v8+ recommended)
+
+### Setup Steps
+
+1. **Clone the repository**
+
+```bash
+# Using SSH (Recommended for contributors)
+git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
+```
+
+```bash
+# Or using HTTPS
+git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
+```
+
+2. **Install dependencies from the root directory**
+
+```bash
+cd pnpm-workspace && pnpm install
+```
+
+3. **Environment Setup: add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder**
+
+- NODE_ENV=development/production
+- PORT=3210
+- SERVER_BASE_URL=http://localhost
+- API_PREFIX=/api/v1
 
 ### Global Development Commands
 
@@ -53,7 +61,7 @@ pnpm lint
 pnpm typecheck
 ```
 
-### Build and run the server in Docker
+4. **Build and run the server in Docker**
 
 ```bash
 # Using docker compose (Recommended)
@@ -64,6 +72,8 @@ docker compose up server-dev --build
 # Or build and run separately
 pnpm docker:build && pnpm docker:run
 ```
+
+### Paste `http://localhost:3210/health` into your browser address to make sure the server is running
 
 </details>
 
