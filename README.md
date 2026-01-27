@@ -30,7 +30,7 @@ the <code>pnpm</code> package manager.
   ```bash
   cd pnpm-workspace && pnpm install
   ```
-  4. **Environment Setup `.env`**
+  4. **Environment Setup: add the `.env` file into the apps/server folder**
   - NODE_ENV=development
   - PORT=3000
   - SERVER_BASE_URL=http://localhost
@@ -51,13 +51,14 @@ the <code>pnpm</code> package manager.
   # Validates TypeScript across all apps (skips non-TS packages).
   pnpm typecheck
   ```
+  **Run the next two commands to build and run the server in Docker**
   ```bash
-  # Execute vitest/jest suites for all services.
-  pnpm test
+  # Build the server.
+  pnpm docker:build
   ```
   ```bash
-  # Build all apps.
-  pnpm build
+  # Run the server.
+  pnpm docker:run
   ```
   </details>
   
