@@ -9,67 +9,92 @@ To ensure an optimal balance of speed, safety, and CI performance the workspace 
 the <code>pnpm</code> package manager.
 
 <details>
-  <summary>🚀 Global Development Commands</summary>
+  <summary>🚀 How to deploy locally</summary>
+  ### Prerequisites
+  Ensure you have the following installed:
+  - [Docker](https://www.docker.com/)
+  - [pnpm](https://pnpm.io/installation) (v8+ recommended)
+  ### Setup Steps
+  1. **Clone the repository**
+  ```bash
+    # Using SSH (Recommended for contributors)
+    git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
+    # Or using HTTPS
+    git clone [https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git](https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git)
+  ```
+  2. Install dependencies from the root directory
+    ```bash
+    $ cd pnpm-workspace && pnpm install
+    ```
+  3. Environment Setup `.env`
+  - NODE_ENV=
+  - PORT=
+  - SERVER_BASE_URL=http://localhost
+  - API_PREFIX=/api/v1
+</details>
 
-You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
-
-| Command          | Task                                                          |
-| :--------------- | :------------------------------------------------------------ |
-| `pnpm lint`      | Runs ESLint using the shared `packages/config`.               |
-| `pnpm typecheck` | Validates TypeScript across all apps (skips non-TS packages). |
-| `pnpm test`      | Execute vitest/jest suites for all services                   |
-| `pnpm build`     | Build all apps                                                |
-
+<details>
+  <summary>Global Development Commands</summary>
+  You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
+  | Command          | Task                                                          |
+  | :--------------- | :------------------------------------------------------------ |
+  | `pnpm lint`      | Runs ESLint using the shared `packages/config`.               |
+  | `pnpm typecheck` | Validates TypeScript across all apps (skips non-TS packages). |
+  | `pnpm test`      | Execute vitest/jest suites for all services                   |
+  | `pnpm build`     | Build all apps                                                |
 </details>
 
 <details>
   <summary><h3>Commit convention</h3></summary>
   <p>To unify commit writing, this project uses <b>Husky</b> and <b>Commitlint</b>.</p>
   <p><b>Structure:</b>&nbsp;<code>type(scope?): subject description</code></p>
+
   <details>
     <summary>
       <b>List of the commit types</b>
     </summary>
     <table>
-    <thead>
-      <tr>
-        <th>Commit type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>feat</code></td><td>New user-facing feature</td></tr>
-      <tr><td><code>fix</code></td><td>Bug fix</td></tr>
-      <tr><td><code>chore</code></td><td>Tooling, configuration, or maintenance</td></tr>
-      <tr><td><code>refactor</code></td><td>Code change without behavior change</td></tr>
-      <tr><td><code>style</code></td><td>Formatting (no logic)</td></tr>
-      <tr><td><code>perf</code></td><td>Performance improvement</td></tr>
-      <tr><td><code>docs</code></td><td>Documentation only</td></tr>
-      <tr><td><code>ci</code></td><td>CI/CD pipeline and script improvements</td></tr>
-    </tbody>
-  </table>
+      <thead>
+        <tr>
+          <th>Commit type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>feat</code></td><td>New user-facing feature</td></tr>
+        <tr><td><code>fix</code></td><td>Bug fix</td></tr>
+        <tr><td><code>chore</code></td><td>Tooling, configuration, or maintenance</td></tr>
+        <tr><td><code>refactor</code></td><td>Code change without behavior change</td></tr>
+        <tr><td><code>style</code></td><td>Formatting (no logic)</td></tr>
+        <tr><td><code>perf</code></td><td>Performance improvement</td></tr>
+        <tr><td><code>docs</code></td><td>Documentation only</td></tr>
+        <tr><td><code>ci</code></td><td>CI/CD pipeline and script improvements</td></tr>
+      </tbody>
+    </table>
   </details>
-    <details>
+
+  <details>
     <summary>
       <b>List of the scope examples</b>
     </summary>
       <table>
-    <thead>
-      <tr>
-        <th>Scope</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>deps</code></td><td>Package updates</td></tr>
-      <tr><td><code>auth</code></td><td>Authentication and Authorization logic</td></tr>
-      <tr><td><code>api</code></td><td>Data fetching, controllers, and routes</td></tr>
-      <tr><td><code>web/ser</code></td><td>Specific part of the monorepo</td></tr>
-      <tr><td><code>ui</code></td><td>UI components and styling</td></tr>
-      <tr><td><code>github</code></td><td>GitHub Actions or repository settings</td></tr>
-    </tbody>
-  </table>
-    </details>
+      <thead>
+        <tr>
+          <th>Scope</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>deps</code></td><td>Package updates</td></tr>
+        <tr><td><code>auth</code></td><td>Authentication and Authorization logic</td></tr>
+        <tr><td><code>api</code></td><td>Data fetching, controllers, and routes</td></tr>
+        <tr><td><code>web/ser</code></td><td>Specific part of the monorepo</td></tr>
+        <tr><td><code>ui</code></td><td>UI components and styling</td></tr>
+        <tr><td><code>github</code></td><td>GitHub Actions or repository settings</td></tr>
+      </tbody>
+    </table>
+  </details>
+
   <details>
     <summary><b>View Examples</b></summary>
     <ul>
@@ -80,4 +105,5 @@ You can run workspace-wide commands from the root directory to ensure consistenc
       <li><code>fix(ui): align login button</code></li>
     </ul>
   </details>
+
 </details>
