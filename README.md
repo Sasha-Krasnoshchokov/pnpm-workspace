@@ -62,8 +62,6 @@ cd pnpm-workspace && pnpm install
 - SERVER_BASE_URL=http://localhost
 - API_PREFIX=/api/v1
 
-# DO NOT FORGET TO UPDATE THE README.md FILE
-
 ### Global Development Commands
 
 You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
@@ -80,7 +78,7 @@ pnpm lint
 pnpm typecheck
 ```
 
-4. **Build and run the server in Docker**
+5. **Build and run the server in Docker**
 
 ```bash
 # Using docker compose (Recommended)
@@ -92,8 +90,9 @@ docker compose up server-dev --build
 pnpm docker:build && pnpm docker:run
 ```
 
-5. **Paste** `http://localhost:3210/health` **into your browser address to make sure the server is running**
+6. **Paste** `http://localhost:3210/health` **into your browser address to make sure the server is running**
 
+## DO NOT FORGET TO UPDATE THE README.md FILE
 </details>
 
 <details>
@@ -147,7 +146,7 @@ pnpm docker:build && pnpm docker:run
   </table>
 </details>
 
-<details>
+<details open>
   <summary><b>View Examples</b></summary>
   <ul>
     <li><code>feat(web/auth): add login</code></li>
