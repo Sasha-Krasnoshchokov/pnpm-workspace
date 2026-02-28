@@ -45,6 +45,8 @@ cd pnpm-workspace && pnpm install
 - SERVER_BASE_URL=http://localhost
 - API_PREFIX=/api/v1
 
+# DO NOT FORGET TO UPDATE THE README.md FILE
+
 ### Global Development Commands
 
 You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
