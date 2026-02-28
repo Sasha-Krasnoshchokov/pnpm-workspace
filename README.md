@@ -32,13 +32,30 @@ git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
 git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
 ```
 
-2. **Install dependencies from the root directory**
+2. **Change the remote URL**
+
+```bash
+# Check existing remotes first to confirm the name
+git remote -v
+```
+
+```bash
+# Remove the existing remote named 'origin'
+git remote remove origin
+```
+
+```bash
+# Add your remote with the desired URL
+git remote add origin [new-url]
+```
+
+3. **Install dependencies from the root directory**
 
 ```bash
 cd pnpm-workspace && pnpm install
 ```
 
-3. **Environment Setup:** add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder
+4. **Environment Setup:** add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder
 
 - NODE_ENV=development/production
 - PORT=3210
