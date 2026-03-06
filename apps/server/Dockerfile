@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:25-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
@@ -8,16 +8,15 @@ WORKDIR /app
 # Stage 2: Prune & Fetch (Optimized for pnpm caching)
 FROM base AS fetcher
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
-# 2. Copy ALL package.jsons across the workspace (The "8 projects" fix)
-COPY apps/*/package.json ./apps/
-COPY packages/*/package.json ./packages/
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY packages/types/package.json ./packages/
+COPY apps/server/package.json ./apps/server/
 
 RUN pnpm fetch --prefer-offline
 
 FROM fetcher AS builder
 COPY . .
 RUN pnpm install --frozen-lockfile --prefer-offline
-# Filter build to just this app
 RUN pnpm --filter @repo/server run build
 
 FROM builder AS development
@@ -27,10 +26,10 @@ EXPOSE 3210
 WORKDIR /app/apps/server
 CMD ["pnpm", "--filter @repo/server", "dev:watch"]
 
-FROM node:20-alpine AS production
+FROM node:25-alpine AS production
 ENV NODE_ENV=production
 ENV PORT=6543
-# Security: Non-root user
+
 RUN apk add --no-cache curl \
 && addgroup -S app && adduser -S app -G app
 

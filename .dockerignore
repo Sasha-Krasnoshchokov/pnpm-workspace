@@ -1,0 +1,17 @@
+node_modules
+apps/*/node_modules
+apps/*/dist
+packages/*/node_modules
+dist
+**/dist
+.pnpm-store
+.git
+.gitignore
+dist
+coverage
+*.log
+.env*
+Dockerfile
+docker-compose.yml
+.vscode
+.idea

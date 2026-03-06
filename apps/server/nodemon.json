@@ -6,7 +6,6 @@
   "args": "src/server.ts",
   "delay": 500,
   "env": {
-    "NODE_ENV": "development",
-    "PORT": "3210"
+    "DOTENV_CONFIG_PATH": "./.env.local"
   }
 }
