@@ -10,7 +10,7 @@ const server = app.listen(PORT, async () => {
     console.error('Error during Data Source initialization', error);
     throw error;
   } finally {
-    console.info(`Server running in ${NODE_ENV} mode on port ${PORT}`);
+    console.info(`Server running in ${NODE_ENV} mode on: http://localhost:${PORT}`);
   }
 });
 

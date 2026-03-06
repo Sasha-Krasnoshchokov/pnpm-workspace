@@ -15,18 +15,19 @@
     "dev:server:watch": "pnpm --filter @repo/server dev:watch",
     "build:server": "pnpm --filter @repo/server build",
     "docker:build": "docker build --target development -t repo-server:dev -f apps/server/Dockerfile .",
-    "docker:run": "docker run -p 3210:3210 repo-server:dev"
+    "docker:run": "docker run -p 3210:3210 repo-server:dev",
+    "docker:compose:up": "docker compose up --build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
   "devDependencies": {
-    "@commitlint/cli": "^20.3.1",
-    "@commitlint/config-conventional": "^20.3.1",
+    "@commitlint/cli": "^20.4.3",
+    "@commitlint/config-conventional": "^20.4.3",
     "eslint": "catalog:",
     "husky": "^9.1.7",
-    "prettier": "^3.8.0",
+    "prettier": "^3.8.1",
     "typescript": "catalog:"
   }
 }
