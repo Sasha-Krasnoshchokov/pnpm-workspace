@@ -82,7 +82,7 @@ pnpm typecheck
 
 ```bash
 # Using docker compose (Recommended)
-docker compose up server-dev --build
+pnpm docker:compose:up
 ```
 
 ```bash
