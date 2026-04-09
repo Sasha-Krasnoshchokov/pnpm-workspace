@@ -1,4 +1,4 @@
-import baseConfig from '../../packages/eslint-config/base.js';
+import baseConfig from '@repo/eslint/base.js';
 
 export default [
   ...baseConfig,

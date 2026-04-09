@@ -5,10 +5,14 @@
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "dev": "node --watch --loader ts-node/esm src/index.ts"
   },
   "devDependencies": {
+    "@repo/eslint": "workspace:*",
     "@repo/tsconfig": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@eslint/js": "^9.0.0"
   }
 }

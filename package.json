@@ -1,33 +1,49 @@
 {
-  "name": "pnpm-workspace",
+  "name": "monorepo-workspace",
   "version": "1.0.0",
   "description": "Production ready Monorepo Starter Kit",
-  "private": true,
-  "scripts": {
-    "prepare": "husky",
-    "lint": "pnpm --if-present -r run lint",
-    "test": "pnpm --if-present -r run test",
-    "build": "pnpm -r run build",
-    "typecheck": "pnpm -r --if-present typecheck",
-    "dev": "pnpm -r --parallel run dev",
-    "dev:client": "pnpm --filter client run dev",
-    "dev:server": "pnpm --filter @repo/server dev",
-    "dev:server:watch": "pnpm --filter @repo/server dev:watch",
-    "build:server": "pnpm --filter @repo/server build",
-    "docker:build": "docker build --target development -t repo-server:dev -f apps/server/Dockerfile .",
-    "docker:run": "docker run -p 3210:3210 repo-server:dev",
-    "docker:compose:up": "docker compose up --build"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "nth-check": ">=2.0.1",
+      "fast-xml-parser": ">=4.4.1",
+      "semver": "7.5.3",
+      "cross-spawn": ">=7.0.5"
+    }
+  },
+  "scripts": {
+    "prepare": "is-ci || husky",
+    "lint": "pnpm --if-present -r run lint",
+    "test": "pnpm --if-present -r run test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "build": "pnpm -r --parallel run build",
+    "dev": "pnpm -r --parallel run dev",
+    "dev:client": "pnpm --filter @repo/client run dev",
+    "build:client": "pnpm --filter @repo/client run build",
+    "dev:server": "pnpm --filter @repo/server run dev",
+    "dev:server:watch": "pnpm --filter @repo/server run dev:watch",
+    "build:server": "pnpm --filter @repo/server run build",
+    "docker:build:dev": "docker build --target development -t monorepo-server:dev -f apps/server/Dockerfile.dev .",
+    "docker:run:dev": "docker run -p 3210:3210 monorepo-server:dev",
+    "docker:build:prod": "docker build --target production -t monorepo-server:prod -f apps/server/Dockerfile.prod .",
+    "docker:run:prod": "docker run -p 6543:6543 monorepo-server:prod",
+    "docker:compose:up": "docker compose up --build"
+  },
   "devDependencies": {
-    "@commitlint/cli": "^20.4.3",
-    "@commitlint/config-conventional": "^20.4.3",
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
+    "@types/node": "20.19.39",
+    "husky": "9.1.7",
+    "prettier": "3.8.1",
     "eslint": "catalog:",
-    "husky": "^9.1.7",
-    "prettier": "^3.8.1",
     "typescript": "catalog:"
   }
 }

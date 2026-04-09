@@ -1,5 +1,5 @@
 {
-  "name": "@repo/utils",
+  "name": "@repo/database",
   "version": "0.0.0",
   "type": "module",
   "private": true,
