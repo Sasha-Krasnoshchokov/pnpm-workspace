@@ -1,7 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { env } from './config/env';
+import { env } from './config/env.js';
 
 const app: express.Application = express();
 
@@ -28,9 +28,7 @@ app.use(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     err: any,
     _req: express.Request,
-    res: express.Response,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _next: express.NextFunction
+    res: express.Response
   ) => {
     const status = err.status || 500;
     res.status(status).json({

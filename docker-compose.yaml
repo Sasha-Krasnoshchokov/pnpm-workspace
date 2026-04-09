@@ -10,7 +10,7 @@ services:
       - /app/node_modules
       - /app/apps/server/node_modules
     env_file:
-      - apps/server/.env.local
+      - apps/server/.env
     ports:
       - 3210:3210
     environment:
@@ -19,4 +19,3 @@ services:
       - CHOKIDAR_INTERVAL=100
     command: >
       sh -c "npx tsx watch src/server.ts"
-      

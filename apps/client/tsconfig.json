@@ -1,8 +1,9 @@
 {
-  "extends": "../../packages/tsconfig/base.json",
+  "extends": "@repo/tsconfig/client.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
-  "include": ["./*"],
-  "exclude": ["node_modules"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
