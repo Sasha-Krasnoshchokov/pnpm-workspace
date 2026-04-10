@@ -93,6 +93,7 @@ pnpm docker:build && pnpm docker:run
 6. **Paste** `http://localhost:3210/health` **into your browser address to make sure the server is running**
 
 ## DO NOT FORGET TO UPDATE THE README.md FILE
+
 </details>
 
 <details>
