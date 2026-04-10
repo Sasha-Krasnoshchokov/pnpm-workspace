@@ -18,7 +18,6 @@ RUN pnpm install --frozen-lockfile --prefer-offline
 FROM fetcher AS builder
 COPY . .
 RUN pnpm --filter @repo/server run build
-RUN pnpm --filter @repo/server deploy /prod/server --legacy
 
 FROM builder AS development
 ENV NODE_ENV=development

@@ -2,7 +2,7 @@ services:
   server-dev:
     build:
       context: .
-      dockerfile: apps/server/Dockerfile
+      dockerfile: apps/server/Dockerfile.dev
       target: development
     container_name: server-dev
     volumes:
@@ -18,4 +18,4 @@ services:
       - CHOKIDAR_USEPOLLING=1
       - CHOKIDAR_INTERVAL=100
     command: >
-      sh -c "npx tsx watch src/server.ts"
+      sh -c "npx tsx watch src/server.js"

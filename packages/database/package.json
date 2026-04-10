@@ -21,7 +21,7 @@
     "@repo/tsconfig": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/eslint": "workspace:*",
-    "@eslint/js": "^9.0.0",
-    "typescript": "^5.3.3"
+    "@eslint/js": "9.0.0",
+    "typescript": "5.3.3"
   }
 }
