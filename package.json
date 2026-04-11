@@ -31,10 +31,10 @@
     "dev:server": "pnpm --filter @repo/server run dev",
     "dev:server:watch": "pnpm --filter @repo/server run dev:watch",
     "build:server": "pnpm --filter @repo/server run build",
-    "docker:build:dev": "docker build --no-cache --target development -t monorepo:dev -f apps/server/Dockerfile .",
-    "docker:run:dev": "docker run -p 3210:3210 monorepo:dev",
-    "docker:build:prod": "docker build --no-cache --target production -t monorepo:prod -f apps/server/Dockerfile.prod .",
-    "docker:run:prod": "docker run -p 6543:6543 monorepo:prod",
+    "docker:dev:build": "docker build --no-cache --target development -t monorepo:dev -f apps/server/Dockerfile .",
+    "docker:dev:run": "docker run -p 3210:3210 monorepo:dev",
+    "docker:prod:build": "docker build --no-cache --target production -t monorepo:prod -f apps/server/Dockerfile .",
+    "docker:prod:run": "docker run -p 6543:6543 monorepo:prod",
     "docker:compose:up": "docker compose up --build"
   },
   "devDependencies": {
