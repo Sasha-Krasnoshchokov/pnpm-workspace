@@ -2,14 +2,19 @@ services:
   server-dev:
     build:
       context: .
-      dockerfile: apps/server/Dockerfile.dev
+      # dockerfile: apps/server/Dockerfile.dev
+      dockerfile: apps/server/Dockerfile
       target: development
-    container_name: server-dev
+    container_name: monorepo-dev-server
     volumes:
       - .:/app
       - /app/node_modules
       - /app/apps/server/node_modules
+      # - /app/packages/database/node_modules
+      # - /app/packages/types/node_modules
+      # - /app/packages/utils/node_modules
     env_file:
+      - .env
       - apps/server/.env
     ports:
       - 3210:3210
@@ -18,4 +23,4 @@ services:
       - CHOKIDAR_USEPOLLING=1
       - CHOKIDAR_INTERVAL=100
     command: >
-      sh -c "npx tsx watch src/server.js"
+      pnpm --filter @repo/server dev
