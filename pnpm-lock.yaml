@@ -55,7 +55,7 @@ importers:
         version: link:../../packages/config-eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/tsconfig
+        version: link:../../packages/config-typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -89,7 +89,7 @@ importers:
         version: link:../../packages/config-eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/tsconfig
+        version: link:../../packages/config-typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -153,6 +153,8 @@ importers:
 
   packages/config-prettier: {}
 
+  packages/config-typescript: {}
+
   packages/database:
     devDependencies:
       '@eslint/js':
@@ -163,15 +165,13 @@ importers:
         version: link:../config-eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../tsconfig
+        version: link:../config-typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
       typescript:
         specifier: 5.3.3
         version: 5.3.3
-
-  packages/tsconfig: {}
 
   packages/types:
     devDependencies:
@@ -189,7 +189,7 @@ importers:
         version: link:../config-eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../tsconfig
+        version: link:../config-typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
