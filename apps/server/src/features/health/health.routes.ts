@@ -1,9 +1,12 @@
-import { FastifyInstance } from 'fastify/types/instance.js';
-import { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import type { FastifyInstance } from 'fastify/types/instance.js';
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 
 import z from 'zod';
 
 import { RESPONSE_STATUSES } from '@repo/utils';
+import { dbConnection, getData } from '@repo/database';
+import { SuccessResponse } from '@repo/schemas';
+import { RESPONSE_CODES } from '@repo/utils';
 
 const healthRoutes: FastifyPluginAsyncZod = async (app: FastifyInstance) => {
   app.get(
@@ -27,7 +30,10 @@ const healthRoutes: FastifyPluginAsyncZod = async (app: FastifyInstance) => {
     },
     async () => {
       console.info({ RESPONSE_STATUSES });
-      // return generateResponse(RESPONSE_STATUSES.SUCCESS, 'Service is healthy!', undefined);
+      console.info(getData('Hello World'));
+      console.info({ dbConnection });
+      console.info({ RESPONSE_CODES });
+      console.info({ SuccessResponse });
       return {
         status: 'ok',
         message: 'Service is healthy!',

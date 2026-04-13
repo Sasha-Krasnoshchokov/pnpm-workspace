@@ -1,7 +1,7 @@
 import Fastify from 'fastify';
 import { env } from './config/env.js';
-import { FastifyRequest } from 'fastify/types/request.js';
-import { FastifyReply } from 'fastify/types/reply.js';
+import type { FastifyRequest } from 'fastify/types/request.js';
+import type { FastifyReply } from 'fastify/types/reply.js';
 import routes from './plugins/app.routes.js';
 import { serializerCompiler } from 'fastify-type-provider-zod';
 

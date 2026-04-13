@@ -1,27 +1,26 @@
 {
   "name": "@repo/database",
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "build": "tsc"
+    "build": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",
     "@repo/types": "workspace:*",
-    "@repo/eslint": "workspace:*",
-    "@eslint/js": "9.39.4",
-    "typescript": "5.9.3"
+    "@repo/eslint": "workspace:*"
   }
 }

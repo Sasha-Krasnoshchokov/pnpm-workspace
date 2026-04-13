@@ -2,8 +2,15 @@
   "extends": "@repo/tsconfig/nodejs.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "composite": true,
+    "incremental": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["./src/**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

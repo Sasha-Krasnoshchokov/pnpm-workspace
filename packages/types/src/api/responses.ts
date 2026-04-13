@@ -1,9 +1,5 @@
-import { RESPONSE_STATUSES } from '@repo/utils';
-
-export type TResponseStatus = keyof typeof RESPONSE_STATUSES;
-
 export interface IResponseSchema<Data> {
-  status: TResponseStatus;
+  status: any;
   message: string;
   timestamp: string;
   uptime: number;
