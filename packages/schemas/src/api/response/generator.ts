@@ -1,4 +1,5 @@
 import z from 'zod';
+import 'dotenv/config';
 import { TResponseStatus } from './schema.js';
 import type { TResponseSchema } from './schema.js';
 import { extendSchemaBy } from '../schemaExtension.js';

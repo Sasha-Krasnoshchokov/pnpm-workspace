@@ -3,10 +3,8 @@ import type { TResponseSchema } from '@repo/schemas';
 import { generateQueryOptionsSchema, ResponseSchema, generateResponse } from '@repo/schemas';
 import { RESPONSE_STATUSES, RESPONSE_CODES } from '@repo/utils';
 
-const HealthResponse: TResponseSchema = generateResponse(
-  RESPONSE_STATUSES.SUCCESS,
-  'Service is healthy!'
-);
+const generateHealthResponse: () => TResponseSchema = () =>
+  generateResponse(RESPONSE_STATUSES.SUCCESS, 'Service is healthy!');
 
 const getReadyResponse = async () => {
   return { status: 'ready' };
@@ -20,4 +18,4 @@ const ValidateOptionsSchema = {
   }),
 };
 
-export default { HealthResponse, getReadyResponse, ValidateOptionsSchema };
+export default { generateHealthResponse, getReadyResponse, ValidateOptionsSchema };

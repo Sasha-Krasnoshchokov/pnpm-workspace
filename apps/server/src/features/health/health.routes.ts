@@ -4,7 +4,9 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import HealthService from './health.service.js';
 
 const healthRoutes: FastifyPluginAsyncZod = async (app: FastifyInstance) => {
-  app.get('/health', HealthService.ValidateOptionsSchema, async () => HealthService.HealthResponse);
+  app.get('/health', HealthService.ValidateOptionsSchema, async () =>
+    HealthService.generateHealthResponse()
+  );
 
   app.get('/ready', async () => {
     return { status: 'ready' };
