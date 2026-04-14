@@ -191,6 +191,10 @@ importers:
         version: link:../types
 
   packages/schemas:
+    dependencies:
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../utils
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*

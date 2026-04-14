@@ -9,6 +9,8 @@ services:
       - .:/app
       - /app/node_modules
       - /app/apps/server/node_modules
+      - /app/packages/schemas/node_modules
+      - /app/packages/utils/node_modules
     env_file:
       - apps/server/.env
     ports:

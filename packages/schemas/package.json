@@ -22,5 +22,8 @@
     "@repo/tsconfig": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/eslint": "workspace:*"
+  },
+  "dependencies": {
+    "@repo/utils": "workspace:*"
   }
 }
