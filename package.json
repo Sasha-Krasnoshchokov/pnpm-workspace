@@ -41,9 +41,15 @@
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
     "@types/node": "20.19.3",
+    "@eslint/js": "9.39.4",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "9.1.2",
     "husky": "9.1.7",
     "prettier": "3.8.1",
-    "eslint": "catalog:",
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "zod": "4.3.5"
   }
 }

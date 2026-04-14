@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
-    "lib": ["ESNext"],
-    "types": ["node"]
+    "types": ["node"],
+    "noEmit": false
   }
 }
