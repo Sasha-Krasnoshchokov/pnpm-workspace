@@ -1,19 +1,43 @@
 services:
-  server-dev:
+  db:
+    image: postgres:15
+    container_name: monorepo-db
+    restart: always
+    env_file:
+      - packages/database/.env
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U user -d monorepo']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  monorepo-server:
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: monorepo-server
+
     build:
       context: .
       dockerfile: apps/server/Dockerfile
       target: development
-    container_name: monorepo-dev-server
+
     volumes:
       - .:/app
       - /app/node_modules
       - /app/apps/server/node_modules
       - /app/packages/schemas/node_modules
       - /app/packages/utils/node_modules
+      - /app/packages/database/node_modules
     env_file:
       - apps/server/.env
     ports:
       - 3210:3210
     command: >
       pnpm --filter @repo/server dev
+
+volumes:
+  db_data:

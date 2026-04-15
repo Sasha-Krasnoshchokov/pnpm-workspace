@@ -16,11 +16,23 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "build": "tsc -p tsconfig.json"
+    "db:studio": "prisma studio",
+    "db:generate": "pnpm dlx prisma generate",
+    "db:push": "prisma db push",
+    "build": "prisma generate && tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.7.0",
+    "@prisma/client": "7.7.0",
+    "dotenv": "17.2.3",
+    "pg": "8.20.0"
   },
   "devDependencies": {
+    "@repo/eslint": "workspace:*",
     "@repo/tsconfig": "workspace:*",
     "@repo/types": "workspace:*",
-    "@repo/eslint": "workspace:*"
+    "@types/node": "20.19.3",
+    "prisma": "7.7.0",
+    "typescript": "catalog:"
   }
 }

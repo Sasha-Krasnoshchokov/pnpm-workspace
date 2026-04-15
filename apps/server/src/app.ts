@@ -4,10 +4,12 @@ import type { FastifyRequest } from 'fastify/types/request.js';
 import type { FastifyReply } from 'fastify/types/reply.js';
 import routes from './plugins/app.routes.js';
 import { serializerCompiler } from 'fastify-type-provider-zod';
+import type { PrismaClient } from '@repo/database';
 
 declare module 'fastify' {
   interface FastifyInstance {
     authenticate: (request: FastifyRequest, reply: FastifyReply) => Promise<void>;
+    prisma: PrismaClient;
   }
 }
 const buildApp = async () => {

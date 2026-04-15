@@ -9,7 +9,7 @@ const healthRoutes: FastifyPluginAsyncZod = async (app: FastifyInstance) => {
   );
 
   app.get('/ready', async () => {
-    return { status: 'ready' };
+    return await HealthService.getReadyResponse();
   });
 };
 
