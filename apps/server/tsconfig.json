@@ -1,10 +1,20 @@
 {
   "extends": "@repo/tsconfig/nodejs.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "noEmit": false
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "paths": {
+    "@repo/types": ["../../packages/types/src/index.ts"],
+    "@repo/database": ["../../packages/database/src/index.ts"],
+    "@repo/utils": ["../../packages/utils/src/index.ts"],
+    "@repo/schemas": ["../../packages/schemas/src/index.ts"]
+  }
 }

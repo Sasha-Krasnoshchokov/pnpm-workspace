@@ -1,5 +1,5 @@
 {
-  "name": "@repo/utils",
+  "name": "@repo/schemas",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -20,6 +20,10 @@
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",
+    "@repo/types": "workspace:*",
     "@repo/eslint": "workspace:*"
+  },
+  "dependencies": {
+    "@repo/utils": "workspace:*"
   }
 }
