@@ -22,7 +22,6 @@
   "scripts": {
     "prepare": "husky",
     "lint": "pnpm --if-present -r run lint",
-    "test": "pnpm --if-present -r run test",
     "typecheck": "pnpm -r --if-present typecheck",
     "build": "pnpm -r --parallel run build",
     "dev": "pnpm -r --parallel run dev",
@@ -35,7 +34,13 @@
     "docker:dev:run": "docker run -p 3210:3210 monorepo:dev",
     "docker:prod:build": "docker build --no-cache --target production -t monorepo:prod -f apps/server/Dockerfile .",
     "docker:prod:run": "docker run -p 6543:6543 monorepo:prod",
-    "docker:compose:up": "docker compose up --build"
+    "compose:up": "docker compose up --build",
+    "compose:down": "docker compose down",
+    "compose:restart": "docker compose down && docker compose up --build",
+    "db:migrate:init": "pnpm --filter @repo/database run db:migrate:init",
+    "db:migrate:auto": "pnpm --filter @repo/database run db:migrate:auto",
+    "db:generate": "pnpm --filter @repo/database run db:generate",
+    "db:studio": "pnpm --filter @repo/database run db:studio"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",

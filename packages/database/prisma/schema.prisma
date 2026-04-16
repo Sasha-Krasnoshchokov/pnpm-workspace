@@ -1,10 +1,18 @@
 generator client {
   provider        = "prisma-client-js"
-  output        = "../node_modules/.prisma/client"
+  output        = "../prisma/generated/prisma"
   engineType      = "library"
   binaryTargets    = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model HealthCheckRecord {
+  id        String   @id @default(uuid())
+  message   String
+  createdAt DateTime @default(now())
+
+  @@map("health_check_records")
 }

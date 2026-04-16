@@ -1,19 +1,17 @@
-import z from 'zod';
 import 'dotenv/config';
 import { TResponseStatus } from './schema.js';
 import type { TResponseSchema } from './schema.js';
-import { extendSchemaBy } from '../schemaExtension.js';
+import { extendResponseBy } from './responseExtension.js';
 
-export const generateResponse = (status: TResponseStatus, message?: string) =>
-  ({
-    status,
-    message: message || `Response with status: ${status}`,
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-  }) as TResponseSchema;
+export const generateResponse = (status: TResponseStatus, message?: string): TResponseSchema => ({
+  status,
+  message: message || `Response with status: ${status}`,
+  timestamp: new Date().toISOString(),
+  uptime: process.uptime(),
+});
 
-export const generateResponseWithData = <TData extends z.ZodType>(
+export const generateResponseWithData = <TData>(
   status: TResponseStatus,
   data: TData,
   message?: string
-) => extendSchemaBy<TResponseSchema, TData>(generateResponse(status, message), data);
+) => extendResponseBy<TResponseSchema, TData>(generateResponse(status, message), data);

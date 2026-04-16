@@ -1,21 +1,66 @@
 import type { TResponseSchema } from '@repo/schemas';
+import {
+  generateQueryOptionsSchema,
+  ResponseSchema,
+  generateResponse,
+  generateResponseWithData,
+} from '@repo/schemas';
+import { RESPONSE_STATUSES, RESPONSE_CODES, RESPONSE_STATUSES_MESSAGES } from '@repo/utils';
+import { THealthCheckList, prisma } from '@repo/database';
+import { HealthCheckRepository } from '@repo/database';
+import { FastifyRequest } from 'fastify';
+import { env } from '../../config/env.js';
 
-import { generateQueryOptionsSchema, ResponseSchema, generateResponse } from '@repo/schemas';
-import { RESPONSE_STATUSES, RESPONSE_CODES } from '@repo/utils';
-
-import { prisma } from '@repo/database';
-
-const generateHealthResponse: () => TResponseSchema = () =>
-  generateResponse(RESPONSE_STATUSES.SUCCESS, 'Service is healthy!');
-
-const getReadyResponse = async () => {
-  const isDatabaseConnected = await prisma.$connect();
-  const result = await prisma.$queryRaw`SELECT 1`;
-  console.info('Database connection status:', { isDatabaseConnected }, { result });
-  if (!result) {
-    return generateResponse(RESPONSE_STATUSES.SERVER_ERROR, 'Service is not ready!');
+const generateHealthResponse: (req: FastifyRequest) => Promise<TResponseSchema> = async (req) => {
+  if (req.ip !== env.DOCKER_DEFAULT_IP) {
+    const healthCheckResult = await HealthCheckRepository.createHealthCheckRecord(
+      RESPONSE_STATUSES_MESSAGES.SERVER_ALIVE
+    );
+    if (!healthCheckResult.message) {
+      return generateResponse(RESPONSE_STATUSES.SERVER_ERROR, 'Database is not ready!');
+    }
+    return generateResponse(RESPONSE_STATUSES.SERVER_ALIVE, healthCheckResult.message);
   }
-  return generateResponse(RESPONSE_STATUSES.SUCCESS, 'Service is ready!');
+  return generateResponse(RESPONSE_STATUSES.SERVER_ALIVE, RESPONSE_STATUSES_MESSAGES.SERVER_ALIVE);
+};
+
+const getReadyResponse: () => Promise<TResponseSchema> = async () => {
+  await prisma.$connect();
+  const result = await prisma.$queryRaw`SELECT 1`;
+  if (!result) {
+    return generateResponse(RESPONSE_STATUSES.SERVER_ERROR, 'Database is not ready!');
+  }
+  const healthCheckResult = await HealthCheckRepository.createHealthCheckRecord(
+    RESPONSE_STATUSES_MESSAGES.DB_ALIVE
+  );
+  if (!healthCheckResult.message) {
+    return generateResponse(RESPONSE_STATUSES.SERVER_ERROR, 'Database is not ready!');
+  }
+  return generateResponse(RESPONSE_STATUSES.DB_ALIVE, healthCheckResult.message);
+};
+
+const getHealthCheckData = async () => {
+  await prisma.$connect();
+  const result = await prisma.$queryRaw`SELECT 1`;
+  if (!result) {
+    return generateResponse(
+      RESPONSE_STATUSES.SERVER_ERROR,
+      RESPONSE_STATUSES_MESSAGES.SERVER_ERROR
+    );
+  }
+  const healthCheckList = await HealthCheckRepository.getHealthCheckRecords();
+  if (!healthCheckList.length) {
+    return generateResponse(
+      RESPONSE_STATUSES.SERVER_ERROR,
+      RESPONSE_STATUSES_MESSAGES.SERVER_ERROR
+    );
+  }
+
+  return generateResponseWithData<THealthCheckList>(
+    RESPONSE_STATUSES.SUCCESS,
+    healthCheckList,
+    RESPONSE_STATUSES_MESSAGES.SUCCESS
+  );
 };
 
 const ValidateOptionsSchema = {
@@ -26,4 +71,9 @@ const ValidateOptionsSchema = {
   }),
 };
 
-export default { generateHealthResponse, getReadyResponse, ValidateOptionsSchema };
+export default {
+  generateHealthResponse,
+  getReadyResponse,
+  getHealthCheckData,
+  ValidateOptionsSchema,
+};
