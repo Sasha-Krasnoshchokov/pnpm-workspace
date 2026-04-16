@@ -16,7 +16,7 @@ COPY packages/utils/package.json ./packages/utils/
 COPY packages/types/package.json ./packages/types/
 COPY apps/server/package.json ./apps/server/
 
-RUN pnpm install --frozen-lockfile
+RUN corepack enable && pnpm install --frozen-lockfile
 
 
 FROM fetcher AS development
@@ -35,7 +35,7 @@ CMD ["pnpm", "--filter", "@repo/server", "dev"]
 FROM fetcher AS builder
 
 COPY . .
-
+RUN pnpm --filter @repo/database db:generate
 RUN pnpm --filter @repo/server... build
 RUN pnpm --filter @repo/server --prod deploy /out/server
 
@@ -44,11 +44,13 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=6543
 
-RUN apk add --no-cache curl && addgroup -S app && adduser -S app -G app
+RUN apk add --no-cache curl openssl && addgroup -S app && adduser -S app -G app
 
 COPY --from=builder /out/server .
+COPY --from=builder /app/packages/database/prisma ./prisma
 
 RUN chown -R app:app /app
+
 
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD curl -f http://localhost:6543/health || exit 1

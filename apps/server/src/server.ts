@@ -6,9 +6,9 @@ const start = async () => {
 
   try {
     await server.listen({ port, host: '0.0.0.0' });
-    server.log.info(`BAssis Server is live on: http://localhost:${port}`);
+    server.log.info(`Monorepo Server is live on: http://localhost:${port}`);
   } catch (err) {
-    server.log.error(err, 'BAssis Server connection failed:');
+    server.log.error(err, 'Monorepo Server connection failed:');
     process.exit(1);
   }
 };

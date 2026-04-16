@@ -1,7 +1,12 @@
 {
   "extends": "@repo/tsconfig/nodejs.json",
   "compilerOptions": {
-    "rootDir": "./src",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "strict": true,
+    "esModuleInterop": true,
+    "rootDir": "./",
     "outDir": "./dist",
     "composite": true,
     "incremental": true,
@@ -9,6 +14,6 @@
     "allowImportingTsExtensions": false,
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["src/**/*"],
+  "include": ["./"],
   "exclude": ["node_modules", "dist"]
 }

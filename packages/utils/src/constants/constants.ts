@@ -7,6 +7,8 @@ export const RESPONSE_STATUSES = {
   NOT_FOUND: 'NOT_FOUND',
   SERVER_ERROR: 'SERVER_ERROR',
   NOT_IMPLEMENTED: 'NOT_IMPLEMENTED',
+  SERVER_ALIVE: 'SERVER_ALIVE',
+  DB_ALIVE: 'DB_ALIVE',
 } as const;
 
 export const RESPONSE_CODES = {
@@ -18,6 +20,8 @@ export const RESPONSE_CODES = {
   404: 404,
   500: 500,
   501: 501,
+  2000: 2000,
+  5000: 5000,
 } as const;
 
 export const RESPONSE_CODES_STATUSES = {
@@ -29,6 +33,8 @@ export const RESPONSE_CODES_STATUSES = {
   [RESPONSE_CODES[404]]: RESPONSE_STATUSES.NOT_FOUND,
   [RESPONSE_CODES[500]]: RESPONSE_STATUSES.SERVER_ERROR,
   [RESPONSE_CODES[501]]: RESPONSE_STATUSES.NOT_IMPLEMENTED,
+  [RESPONSE_CODES[2000]]: RESPONSE_STATUSES.SERVER_ALIVE,
+  [RESPONSE_CODES[5000]]: RESPONSE_STATUSES.DB_ALIVE,
 } as const;
 
 export const RESPONSE_STATUSES_MESSAGES = {
@@ -40,4 +46,6 @@ export const RESPONSE_STATUSES_MESSAGES = {
   [RESPONSE_STATUSES.NOT_FOUND]: 'The server cannot find the requested resource.',
   [RESPONSE_STATUSES.SERVER_ERROR]: 'Internal server error.',
   [RESPONSE_STATUSES.NOT_IMPLEMENTED]: 'The request method is not supported by the server.',
+  [RESPONSE_STATUSES.SERVER_ALIVE]: 'The server is ready to process requests.',
+  [RESPONSE_STATUSES.DB_ALIVE]: 'The database is ready to process data.',
 } as const;
