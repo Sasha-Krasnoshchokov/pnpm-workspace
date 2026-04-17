@@ -2,21 +2,16 @@ import type { FastifyInstance } from 'fastify/types/instance.js';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 
 import HealthService from './health.service.js';
+import HealthUtils from './health.utility.js';
 
 const healthRoutes: FastifyPluginAsyncZod = async (app: FastifyInstance) => {
   app.get(
     '/health',
-    HealthService.ValidateOptionsSchema,
-    async (req) => await HealthService.generateHealthResponse(req)
+    HealthUtils.ValidateOptionsSchema,
+    async () => await HealthService.generateHealthResponse()
   );
 
-  app.get('/ready', async () => {
-    return await HealthService.getReadyResponse();
-  });
-
-  app.get('/ready/all', async () => {
-    return await HealthService.getHealthCheckData();
-  });
+  app.get('/health-db', async () => await HealthService.generateHealthDbResponse());
 };
 
 export default healthRoutes;
