@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import { TResponseStatus } from './schema.js';
 import type { TResponseSchema } from './schema.js';
-import { extendResponseBy } from './responseExtension.js';
 
 export const generateResponse = (status: TResponseStatus, message?: string): TResponseSchema => ({
   status,
@@ -14,4 +13,7 @@ export const generateResponseWithData = <TData>(
   status: TResponseStatus,
   data: TData,
   message?: string
-) => extendResponseBy<TResponseSchema, TData>(generateResponse(status, message), data);
+) => ({
+  ...generateResponse(status, message),
+  data,
+});
