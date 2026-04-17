@@ -26,7 +26,7 @@ EXPOSE 3210
 
 COPY . .
 
-HEALTHCHECK --interval=30s --timeout=3s \
+HEALTHCHECK --interval=300s --timeout=3s \
   CMD curl -f http://localhost:3210/health || exit 1
 
 CMD ["pnpm", "--filter", "@repo/server", "dev"]
@@ -52,7 +52,7 @@ COPY --from=builder /app/packages/database/prisma ./prisma
 RUN chown -R app:app /app
 
 
-HEALTHCHECK --interval=30s --timeout=3s \
+HEALTHCHECK --interval=120s --timeout=3s \
   CMD curl -f http://localhost:6543/health || exit 1
 
 USER app
