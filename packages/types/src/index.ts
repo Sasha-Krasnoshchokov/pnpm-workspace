@@ -1,3 +1,1 @@
-export interface IExample {
-  id: number;
-}
+export * from './api/responses.js';

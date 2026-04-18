@@ -4,6 +4,7 @@
     "target": "ESNext",
     "lib": ["ESNext"],
     "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -23,9 +24,6 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "incremental": true,
-    "tsBuildInfoFile": ".tsbuildinfo",
-    "composite": true
+    "resolveJsonModule": true
   }
 }
