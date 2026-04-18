@@ -1,161 +1,453 @@
-<h1>pnpm Workspace: Production-ready Docker & Node.js Starter Kit</h1>
+<h1>📦 pnpm Workspace: Production-ready Monorepo Starter Kit</h1>
 
-This monorepo starter kit enforces consistency across services.
-It follows a "Base Config" pattern, where apps inherit shared TypeScript, ESLint,
-and Prettier configurations from a centralized <code>packages/config</code> directory,
-eliminating configuration drift.
+A fully-featured monorepo template built with **pnpm workspaces** for scalable Node.js applications. This starter kit enforces consistency across services with:
 
-To ensure an optimal balance of speed, safety, and CI performance the workspace utilizes
-the <code>pnpm</code> package manager.
+- ✅ **Shared Configurations**: Centralized ESLint, TypeScript, and Prettier configs
+- ✅ **Type-Safe**: End-to-end TypeScript with Zod schema validation
+- ✅ **Database Ready**: Integrated Prisma ORM with PostgreSQL
+- ✅ **Dockerized**: Multi-stage builds for development and production
+- ✅ **Clean Architecture**: Repository pattern, schema layering, clean code practices
+- ✅ **Standardized Commits**: Husky + Commitlint for conventional commits
+
+## 📁 Project Structure
+
+```
+pnpm-workspace/
+├── apps/
+│   ├── client/              # TypeScript CLI/utility application
+│   └── server/              # Fastify REST API server
+├── packages/
+│   ├── config-eslint/       # Shared ESLint configuration
+│   ├── config-prettier/     # Shared Prettier configuration
+│   ├── config-typescript/   # Shared TypeScript configuration
+│   ├── database/            # Prisma ORM + repositories + schemas
+│   ├── schemas/             # Zod validation schemas (API contracts)
+│   ├── types/               # Shared TypeScript types
+│   └── utils/               # Shared utilities & constants
+└── docker-compose.yaml      # PostgreSQL + App orchestration
+```
 
 <details open>
-<summary><h3>🚀 How to deploy locally</h3></summary>
+<summary><h3>🚀 Quick Start Guide</h3></summary>
 
 ### Prerequisites
 
 Ensure you have the following installed:
 
-- [Docker](https://www.docker.com/)
-- [pnpm](https://pnpm.io/installation) (v8+ recommended)
+- **Node.js** ≥ 20.0.0 ([Download](https://nodejs.org/))
+- **pnpm** ≥ 10.0.0 ([Installation Guide](https://pnpm.io/installation))
+- **Docker** & **Docker Compose** ([Download](https://www.docker.com/products/docker-desktop))
 
-### Setup Steps
-
-1. **Clone the repository**
+### Step 1: Clone & Setup
 
 ```bash
-# Using SSH (Recommended for contributors)
-git clone git@github.com:Sasha-Krasnoshchokov/pnpm-workspace.git
+# Clone the repository
+git clone <your-repo-url>
+cd pnpm-workspace
+
+# Install dependencies
+pnpm install
+
+# Setup git hooks (Husky)
+pnpm prepare
 ```
 
+### Step 2: Environment Configuration
+
+Create `.env` file in `apps/server/` folder:
+
 ```bash
-# Or using HTTPS
-git clone https://github.com/Sasha-Krasnoshchokov/pnpm-workspace.git
+# Server Configuration
+NODE_ENV=development
+PORT=3210
+API_PREFIX=/api/v1
+SERVER_BASE_URL=http://localhost:3210
+
+# Database Configuration
+DATABASE_URL=postgresql://user:password@localhost:5432/monorepo
+DOCKER_DEFAULT_IP=127.0.0.1
+
+# Security (generate secure tokens for production)
+CORS_ORIGINS=http://localhost:3000,http://localhost:3210
+JWT_SECRET=your-secret-key-here
+JWT_REFRESH_SECRET=your-refresh-secret-here
 ```
 
-2. **Change the remote URL**
+For Docker environment, also set PostgreSQL credentials:
 
 ```bash
-# Check existing remotes first to confirm the name
-git remote -v
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=monorepo
 ```
 
+### Step 3: Verify Setup
+
 ```bash
-# Remove the existing remote named 'origin'
-git remote remove origin
+# Lint all packages
+pnpm lint
+
+# Type check all packages
+pnpm typecheck
+
+# Build all packages
+pnpm build
 ```
 
+### Step 4: Run with Docker Compose (Recommended)
+
 ```bash
-# Add your remote with the desired URL
-git remote add origin [new-url]
+# Start PostgreSQL + Server
+pnpm compose:up
+
+# The server will be available at: http://localhost:3210
+# Health check endpoint: http://localhost:3210/health
 ```
 
-3. **Install dependencies from the root directory**
+Test the health endpoints:
 
 ```bash
-cd pnpm-workspace && pnpm install
+curl http://localhost:3210/health           # Basic health check
+curl http://localhost:3210/health-db        # Database health check
 ```
 
-4. **Environment Setup:** add the `.env` (for prod environments), and `.env.local` (for dev environments) files into the `apps/server` folder
-
-- NODE_ENV=development/production
-- PORT=3210
-- SERVER_BASE_URL=http://localhost
-- API_PREFIX=/api/v1
-
-### Global Development Commands
-
-You can run workspace-wide commands from the root directory to ensure consistency across all apps and packages.
-
-**Run the first two commands to make sure the dependencies are installed correctly**
+To stop services:
 
 ```bash
-# Runs ESLint using the shared `packages/config`.
+pnpm compose:down
+```
+
+### Step 5: Run Locally (Without Docker)
+
+```bash
+# Development mode with hot-reload
+pnpm dev
+
+# Or run specific services
+pnpm dev:server                 # Start Fastify server
+pnpm dev:client                 # Start client app
+
+# Watch mode for server
+pnpm dev:server:watch
+
+# Build for production
+pnpm build
+
+# Run production build
+pnpm build:server && pnpm --filter @repo/server run start
+```
+
+---
+
+## 📋 Available Commands
+
+### Workspace Commands
+
+| Command          | Description                           |
+| ---------------- | ------------------------------------- |
+| `pnpm install`   | Install dependencies for all packages |
+| `pnpm lint`      | Run ESLint across all packages        |
+| `pnpm typecheck` | Type-check all TypeScript files       |
+| `pnpm build`     | Build all packages in parallel        |
+| `pnpm dev`       | Start development mode for all apps   |
+
+### Server Commands
+
+| Command                                | Description                      |
+| -------------------------------------- | -------------------------------- |
+| `pnpm dev:server`                      | Start Fastify server (dev mode)  |
+| `pnpm dev:server:watch`                | Start with nodemon auto-reload   |
+| `pnpm build:server`                    | Compile TypeScript to JavaScript |
+| `pnpm --filter @repo/server run start` | Run compiled server              |
+
+### Database Commands
+
+| Command                | Description                                 |
+| ---------------------- | ------------------------------------------- |
+| `pnpm db:migrate:init` | Initialize & create first migration         |
+| `pnpm db:migrate:auto` | Auto-generate migration from schema changes |
+| `pnpm db:generate`     | Generate Prisma client                      |
+| `pnpm db:studio`       | Open Prisma Studio (visual DB manager)      |
+
+### Docker Commands
+
+| Command                  | Description                              |
+| ------------------------ | ---------------------------------------- |
+| `pnpm compose:up`        | Start all services (PostgreSQL + Server) |
+| `pnpm compose:down`      | Stop all services                        |
+| `pnpm compose:restart`   | Restart all services                     |
+| `pnpm docker:dev:build`  | Build development Docker image           |
+| `pnpm docker:dev:run`    | Run development container                |
+| `pnpm docker:prod:build` | Build production Docker image            |
+| `pnpm docker:prod:run`   | Run production container                 |
+
+</details>
+
+<details>
+<summary><h3>📝 Commit Convention</h3></summary>
+
+This project uses **Husky** and **Commitlint** to enforce [Conventional Commits](https://www.conventionalcommits.org/).
+
+#### Format
+
+```
+type(scope?): subject description
+```
+
+**Max length:** 72 characters for subject line
+
+---
+
+#### Commit Types
+
+| Type       | Description                             | Example                                             |
+| ---------- | --------------------------------------- | --------------------------------------------------- |
+| `feat`     | New user-facing feature                 | `feat(health): add database health check endpoint`  |
+| `fix`      | Bug fix                                 | `fix(server): resolve database connection timeout`  |
+| `refactor` | Code restructuring (no behavior change) | `refactor(database): reorganize repository pattern` |
+| `perf`     | Performance improvement                 | `perf(schemas): optimize zod validation`            |
+| `chore`    | Maintenance, tooling, dependencies      | `chore(deps): upgrade typescript to 5.9.3`          |
+| `style`    | Code formatting (no logic change)       | `style(code): add missing semicolons`               |
+| `docs`     | Documentation only                      | `docs(readme): add environment setup guide`         |
+| `ci`       | CI/CD pipeline updates                  | `ci(github): add linting workflow`                  |
+| `test`     | Add or update tests                     | `test(health): add service unit tests`              |
+
+---
+
+#### Commit Scopes
+
+Scopes should reference the package or feature being modified:
+
+| Scope      | Description                                           |
+| ---------- | ----------------------------------------------------- |
+| `server`   | Server app (`apps/server/`)                           |
+| `client`   | Client app (`apps/client/`)                           |
+| `database` | Database package (`packages/database/`)               |
+| `schemas`  | Schemas package (`packages/schemas/`)                 |
+| `types`    | Types package (`packages/types/`)                     |
+| `utils`    | Utils package (`packages/utils/`)                     |
+| `config`   | Configuration packages (eslint, prettier, typescript) |
+| `deps`     | Dependencies (package.json, pnpm-lock.yaml)           |
+
+---
+
+#### Commit Examples
+
+```bash
+# Feature: Add new endpoint
+feat(server): add health database check endpoint
+
+# Bug fix: Database issue
+fix(database): handle prisma connection errors gracefully
+
+# Refactor: Improve code structure
+refactor(database): reorganize repository with type-safe parameters
+
+# Performance: Optimize validation
+perf(schemas): improve zod schema compilation
+
+# Dependency update
+chore(deps): upgrade prisma to 7.7.0
+
+# Documentation
+docs(readme): add environment setup instructions
+
+# Type definitions
+feat(types): export health check types from database package
+
+# Configuration update
+chore(config): add stricter typescript rules
+```
+
+---
+
+#### Automatic Commit Validation
+
+Commits that don't follow the convention will be **rejected** by Husky pre-commit hook:
+
+```bash
+# ❌ INVALID - Will be rejected
+git commit -m "fix the bug"
+
+# ✅ VALID - Will be accepted
+git commit -m "fix(server): resolve health check endpoint timeout"
+```
+
+To bypass validation (use cautiously):
+
+```bash
+git commit --no-verify
+```
+
+</details>
+
+---
+
+## 🛠 Technology Stack
+
+### Core Framework
+
+- **Fastify** (v5.8.4) - Fast and low-overhead web framework
+- **TypeScript** (v5.9.3) - Type-safe development
+- **Node.js** (v20+) - JavaScript runtime
+
+### Database & ORM
+
+- **Prisma** (v7.7.0) - Next-generation ORM
+- **PostgreSQL** (v15) - Production-grade database
+
+### Validation & Types
+
+- **Zod** (v4.3.5) - TypeScript-first schema validation
+- **fastify-type-provider-zod** - Zod + Fastify integration
+
+### Code Quality
+
+- **ESLint** (v9.39.4) - Static code analysis
+- **Prettier** (v3.8.1) - Code formatter
+- **TypeScript Compiler** - Type checking
+
+### Development Tools
+
+- **pnpm** (v10.27.0) - Fast package manager
+- **Husky** (v9.1.7) - Git hooks
+- **Commitlint** (v20.5.0) - Commit message validation
+- **Docker** - Containerization
+- **Nodemon** (v3.1.11) - Auto-reload development
+
+### Testing
+
+- **Vitest** (v4.0.17) - Unit test framework
+
+---
+
+## ✨ Code Quality & Best Practices
+
+This monorepo adheres to:
+
+- **SOLID Principles** - Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **DRY** - Don't Repeat Yourself (schema composition, shared utilities)
+- **KISS** - Keep It Simple, Stupid (clear, readable code)
+- **YAGNI** - You Aren't Gonna Need It (no over-engineering)
+
+### Architecture Patterns
+
+- **Repository Pattern** - Data access abstraction
+- **Schema Layering** - Input/Output validation separation
+- **Barrel Exports** - Clean module interfaces (`_index.ts`)
+- **Dependency Injection** - Loose coupling between modules
+
+### Quality Metrics
+
+```
+Type Safety:        ✅ 100% - No `any` types allowed
+Code Coverage:      📊 Configured with Vitest
+Linting:            ✅ Strict ESLint rules
+Formatting:         ✅ Automated with Prettier
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### "Cannot find module '@repo/...'"
+
+**Solution:** Run `pnpm install` and ensure the package is in `pnpm-workspace.yaml`
+
+```bash
+pnpm install
+pnpm typecheck  # Verify imports work
+```
+
+### Docker Compose fails to start
+
+**Solution:** Check if ports are available and PostgreSQL credentials match
+
+```bash
+# Kill existing containers
+docker-compose down -v
+
+# Rebuild from scratch
+pnpm compose:restart
+```
+
+### Database migration errors
+
+**Solution:** Reset and reinitialize database
+
+```bash
+# Reset database (⚠️ deletes all data)
+docker-compose down -v
+
+# Regenerate Prisma client
+pnpm db:generate
+
+# Reinitialize migrations
+pnpm db:migrate:init
+```
+
+### Port 3210 already in use
+
+**Solution:** Change the port in `.env` or kill the process
+
+```bash
+# Linux/macOS
+lsof -i :3210
+kill -9 <PID>
+
+# Windows
+netstat -ano | findstr :3210
+taskkill /PID <PID> /F
+```
+
+### TypeScript compilation errors
+
+**Solution:** Ensure all packages are built in correct order
+
+```bash
+# Clean build
+rm -rf dist packages/*/dist apps/*/dist
+
+# Rebuild
+pnpm build
+```
+
+### ESLint import errors
+
+**Solution:** Clear cache and reinstall
+
+```bash
+rm -rf node_modules/.cache
+pnpm install
 pnpm lint
 ```
 
-```bash
-# Validates TypeScript across all apps (skips non-TS packages).
-pnpm typecheck
-```
+---
 
-5. **Build and run the server in Docker**
+## 📚 Project Resources
 
-```bash
-# Using docker compose (Recommended)
-pnpm docker:compose:up
-```
+- [pnpm Documentation](https://pnpm.io/) - Package manager guide
+- [Fastify Documentation](https://www.fastify.io/) - Web framework
+- [Prisma Documentation](https://www.prisma.io/docs/) - ORM guide
+- [Zod Documentation](https://zod.dev/) - Schema validation
+- [Conventional Commits](https://www.conventionalcommits.org/) - Commit conventions
 
-```bash
-# Or build and run separately
-pnpm docker:build && pnpm docker:run
-```
+---
 
-6. **Paste** `http://localhost:3210/health` **into your browser address to make sure the server is running**
+## 📄 License
 
-## DO NOT FORGET TO UPDATE THE README.md FILE
+ISC © 2026
 
-</details>
+---
 
-<details>
-<summary><h3>Commit convention</h3></summary>
-<p>To unify commit writing, this project uses <b>Husky</b> and <b>Commitlint</b>.</p>
-<p><b>Structure:</b>&nbsp;<code>type(scope?): subject description</code></p>
+## 💡 Contributing
 
-<details>
-  <summary>
-    <b>List of the commit types</b>
-  </summary>
-  <table>
-    <thead>
-      <tr>
-        <th>Commit type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>feat</code></td><td>New user-facing feature</td></tr>
-      <tr><td><code>fix</code></td><td>Bug fix</td></tr>
-      <tr><td><code>chore</code></td><td>Tooling, configuration, or maintenance</td></tr>
-      <tr><td><code>refactor</code></td><td>Code change without behavior change</td></tr>
-      <tr><td><code>style</code></td><td>Formatting (no logic)</td></tr>
-      <tr><td><code>perf</code></td><td>Performance improvement</td></tr>
-      <tr><td><code>docs</code></td><td>Documentation only</td></tr>
-      <tr><td><code>ci</code></td><td>CI/CD pipeline and script improvements</td></tr>
-    </tbody>
-  </table>
-</details>
+When contributing to this monorepo:
 
-<details>
-  <summary>
-    <b>List of the scope examples</b>
-  </summary>
-    <table>
-    <thead>
-      <tr>
-        <th>Scope</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>deps</code></td><td>Package updates</td></tr>
-      <tr><td><code>auth</code></td><td>Authentication and Authorization logic</td></tr>
-      <tr><td><code>api</code></td><td>Data fetching, controllers, and routes</td></tr>
-      <tr><td><code>web/ser</code></td><td>Specific part of the monorepo</td></tr>
-      <tr><td><code>ui</code></td><td>UI components and styling</td></tr>
-      <tr><td><code>github</code></td><td>GitHub Actions or repository settings</td></tr>
-    </tbody>
-  </table>
-</details>
-
-<details open>
-  <summary><b>View Examples</b></summary>
-  <ul>
-    <li><code>feat(web/auth): add login</code></li>
-    <li><code>feat(ser/auth): add JWT login support</code></li>
-    <li><code>fix(ser): resolve database connection timeout</code></li>
-    <li><code>chore(deps): update typeorm to v0.3.20</code></li>
-    <li><code>fix(ui): align login button</code></li>
-  </ul>
-</details>
+1. **Follow commit conventions** - Husky will validate your commits
+2. **Run `pnpm lint`** before pushing - Fix any linting errors
+3. **Run `pnpm typecheck`** - Ensure type safety
+4. **Test your changes** - Write tests for new features
+5. **Update README** - Document new packages or commands
 
 </details>
