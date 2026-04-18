@@ -1,6 +1,6 @@
 <h1>📦 pnpm Workspace: Production-ready Monorepo Starter Kit</h1>
 
-A fully-featured monorepo template built with **pnpm workspaces** for scalable Node.js applications. This starter kit enforces consistency across services with:
+A fully featured monorepo template built with **pnpm workspaces** for scalable Node.js applications. This starter kit enforces consistency across services with:
 
 - ✅ **Shared Configurations**: Centralized ESLint, TypeScript, and Prettier configs
 - ✅ **Type-Safe**: End-to-end TypeScript with Zod schema validation
@@ -48,13 +48,13 @@ cd pnpm-workspace
 # Install dependencies
 pnpm install
 
-# Setup git hooks (Husky)
+# Set up Git hooks (Husky)
 pnpm prepare
 ```
 
 ### Step 2: Environment Configuration
 
-Create `.env` file in `apps/server/` folder:
+Create a `.env` file in the `apps/server/` folder:
 
 ```bash
 # Server Configuration
@@ -73,7 +73,7 @@ JWT_SECRET=your-secret-key-here
 JWT_REFRESH_SECRET=your-refresh-secret-here
 ```
 
-For Docker environment, also set PostgreSQL credentials:
+For the Docker environment, also set PostgreSQL credentials:
 
 ```bash
 POSTGRES_USER=user
@@ -191,7 +191,7 @@ This project uses **Husky** and **Commitlint** to enforce [Conventional Commits]
 #### Format
 
 ```
-type(scope?): subject description
+type(scope?): short description
 ```
 
 **Max length:** 72 characters for subject line
@@ -263,7 +263,7 @@ chore(config): add stricter typescript rules
 
 #### Automatic Commit Validation
 
-Commits that don't follow the convention will be **rejected** by Husky pre-commit hook:
+Commits that don't follow the convention will be **rejected** by the Husky pre-commit hook:
 
 ```bash
 # ❌ INVALID - Will be rejected
@@ -289,7 +289,7 @@ git commit --no-verify
 
 - **Fastify** (v5.8.4) - Fast and low-overhead web framework
 - **TypeScript** (v5.9.3) - Type-safe development
-- **Node.js** (v20+) - JavaScript runtime
+- **Node.js** (v20 or higher) - JavaScript runtime
 
 ### Database & ORM
 
@@ -340,7 +340,7 @@ This monorepo adheres to:
 ### Quality Metrics
 
 ```
-Type Safety:        ✅ 100% - No `any` types allowed
+Type Safety:        ✅ Strict - No `any` types allowed
 Code Coverage:      📊 Configured with Vitest
 Linting:            ✅ Strict ESLint rules
 Formatting:         ✅ Automated with Prettier
@@ -365,7 +365,7 @@ pnpm typecheck  # Verify imports work
 
 ```bash
 # Kill existing containers
-docker-compose down -v
+docker compose down -v
 
 # Rebuild from scratch
 pnpm compose:restart
@@ -402,7 +402,7 @@ taskkill /PID <PID> /F
 
 ### TypeScript compilation errors
 
-**Solution:** Ensure all packages are built in correct order
+**Solution:** Ensure all packages are built in the correct order
 
 ```bash
 # Clean build
@@ -414,7 +414,7 @@ pnpm build
 
 ### ESLint import errors
 
-**Solution:** Clear cache and reinstall
+**Solution:** Clear the cache and reinstall
 
 ```bash
 rm -rf node_modules/.cache
@@ -442,7 +442,7 @@ ISC © 2026
 
 ## 💡 Contributing
 
-When contributing to this monorepo:
+When contributing to this monorepo, please:
 
 1. **Follow commit conventions** - Husky will validate your commits
 2. **Run `pnpm lint`** before pushing - Fix any linting errors
