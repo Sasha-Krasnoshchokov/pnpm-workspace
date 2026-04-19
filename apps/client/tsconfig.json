@@ -4,6 +4,10 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "paths": {
+    "@repo/types": ["../../packages/types/src/index.ts"],
+    "@repo/utils": ["../../packages/utils/src/index.ts"]
+  }
 }
