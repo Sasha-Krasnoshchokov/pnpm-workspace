@@ -13,5 +13,8 @@
     "@repo/tsconfig": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/utils": "workspace:*"
+  },
+  "dependencies": {
+    "@repo/utils": "workspace:*"
   }
 }

@@ -14,17 +14,18 @@ A fully featured monorepo template built with **pnpm workspaces** for scalable N
 ```
 pnpm-workspace/
 ├── apps/
-│   ├── client/              # TypeScript CLI/utility application
-│   └── server/              # Fastify REST API server
+│   ├── client/               # TypeScript CLI/utility application
+│   └── server/               # Fastify REST API server
+├── configurations/
+│   ├── eslint/               # Shared ESLint configuration
+│   ├── prettier/             # Shared Prettier configuration
+│   ├── typescript/           # Shared TypeScript configuration
 ├── packages/
-│   ├── config-eslint/       # Shared ESLint configuration
-│   ├── config-prettier/     # Shared Prettier configuration
-│   ├── config-typescript/   # Shared TypeScript configuration
-│   ├── database/            # Prisma ORM + repositories + schemas
-│   ├── schemas/             # Zod validation schemas (API contracts)
-│   ├── types/               # Shared TypeScript types
-│   └── utils/               # Shared utilities & constants
-└── docker-compose.yaml      # PostgreSQL + App orchestration
+│   ├── database/             # Prisma ORM + repositories + schemas
+│   ├── schemas/              # Zod validation schemas (API contracts)
+│   ├── types/                # Shared TypeScript types
+│   └── utils/                # Shared utilities & constants
+└── docker-compose.yaml       # PostgreSQL + App orchestration
 ```
 
 <details open>

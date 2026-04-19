@@ -7,12 +7,24 @@ settings:
 
 catalogs:
   default:
+    '@eslint/js':
+      specifier: 9.39.4
+      version: 9.39.4
+    '@types/node':
+      specifier: 20.19.3
+      version: 20.19.3
+    dotenv:
+      specifier: 17.2.3
+      version: 17.2.3
     eslint:
       specifier: 9.39.4
       version: 9.39.4
     typescript:
       specifier: 5.9.3
       version: 5.9.3
+    zod:
+      specifier: 4.3.5
+      version: 4.3.5
 
 overrides:
   nth-check: '>=2.0.1'
@@ -25,23 +37,23 @@ importers:
   .:
     dependencies:
       dotenv:
-        specifier: 17.2.3
+        specifier: 'catalog:'
         version: 17.2.3
       zod:
-        specifier: 4.3.5
+        specifier: 'catalog:'
         version: 4.3.5
     devDependencies:
       '@commitlint/cli':
         specifier: 20.5.0
-        version: 20.5.0(@types/node@20.19.3)(conventional-commits-parser@6.4.0)(typescript@6.0.3)
+        version: 20.5.0(@types/node@20.19.3)(conventional-commits-parser@6.4.0)(typescript@5.9.3)
       '@commitlint/config-conventional':
         specifier: 20.5.0
         version: 20.5.0
       '@eslint/js':
-        specifier: 9.39.4
+        specifier: 'catalog:'
         version: 9.39.4
       '@types/node':
-        specifier: 20.19.3
+        specifier: 'catalog:'
         version: 20.19.3
       eslint:
         specifier: 'catalog:'
@@ -56,17 +68,17 @@ importers:
         specifier: 3.8.1
         version: 3.8.1
       typescript:
-        specifier: ^6.0.2
-        version: 6.0.3
+        specifier: 'catalog:'
+        version: 5.9.3
 
   apps/client:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -97,9 +109,6 @@ importers:
       '@repo/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       fastify:
         specifier: 5.8.4
         version: 5.8.4
@@ -109,22 +118,25 @@ importers:
       pino:
         specifier: 10.3.1
         version: 10.3.1
-      zod:
-        specifier: 4.3.5
-        version: 4.3.5
     devDependencies:
+      '@eslint/js':
+        specifier: 'catalog:'
+        version: 9.39.4
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@types/node':
-        specifier: 20.19.3
+        specifier: 'catalog:'
         version: 20.19.3
+      eslint:
+        specifier: 'catalog:'
+        version: 9.39.4(jiti@2.6.1)
       nodemon:
         specifier: 3.1.11
         version: 3.1.11
@@ -141,24 +153,24 @@ importers:
         specifier: 4.0.17
         version: 4.0.17(@types/node@20.19.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.3)
 
-  packages/config-eslint:
+  configurations/eslint:
     dependencies:
       '@eslint/js':
-        specifier: 9.39.4
+        specifier: 'catalog:'
         version: 9.39.4
       eslint:
-        specifier: 9.39.4
+        specifier: 'catalog:'
         version: 9.39.4(jiti@2.6.1)
       typescript:
-        specifier: 5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
       typescript-eslint:
         specifier: 8.54.0
         version: 8.54.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
 
-  packages/config-prettier: {}
+  configurations/prettier: {}
 
-  packages/config-typescript: {}
+  configurations/typescript: {}
 
   packages/database:
     dependencies:
@@ -168,19 +180,16 @@ importers:
       '@prisma/client':
         specifier: 7.7.0
         version: 7.7.0(prisma@7.7.0(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(typescript@5.9.3))(typescript@5.9.3)
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       pg:
         specifier: 8.20.0
         version: 8.20.0
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
@@ -202,10 +211,10 @@ importers:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
@@ -214,16 +223,16 @@ importers:
     devDependencies:
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
 
   packages/utils:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
 
 packages:
 
@@ -1964,8 +1973,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  safe-regex2@5.1.0:
-    resolution: {integrity: sha512-pNHAuBW7TrcleFHsxBr5QMi/Iyp0ENjUKz7GCcX1UO7cMh+NmVK6HxQckNL1tJp1XAJVjG6B8OKIPqodqj9rtw==}
+  safe-regex2@5.1.1:
+    resolution: {integrity: sha512-mOSBvHGDZMuIEZMdOz/aCEYDCv0E7nfcNsIhUF+/P+xC7Hyf3FkvymqgPbg9D1EdSGu+uKbJgy09K/RKKc7kJA==}
     hasBin: true
 
   safe-stable-stringify@2.5.0:
@@ -2132,11 +2141,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@6.0.3:
-    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   undefsafe@2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
 
@@ -2297,11 +2301,11 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.28.5': {}
 
-  '@commitlint/cli@20.5.0(@types/node@20.19.3)(conventional-commits-parser@6.4.0)(typescript@6.0.3)':
+  '@commitlint/cli@20.5.0(@types/node@20.19.3)(conventional-commits-parser@6.4.0)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.5.0
       '@commitlint/lint': 20.5.0
-      '@commitlint/load': 20.5.0(@types/node@20.19.3)(typescript@6.0.3)
+      '@commitlint/load': 20.5.0(@types/node@20.19.3)(typescript@5.9.3)
       '@commitlint/read': 20.5.0(conventional-commits-parser@6.4.0)
       '@commitlint/types': 20.5.0
       tinyexec: 1.1.1
@@ -2350,14 +2354,14 @@ snapshots:
       '@commitlint/rules': 20.5.0
       '@commitlint/types': 20.5.0
 
-  '@commitlint/load@20.5.0(@types/node@20.19.3)(typescript@6.0.3)':
+  '@commitlint/load@20.5.0(@types/node@20.19.3)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-validator': 20.5.0
       '@commitlint/execute-rule': 20.0.0
       '@commitlint/resolve-extends': 20.5.0
       '@commitlint/types': 20.5.0
-      cosmiconfig: 9.0.1(typescript@6.0.3)
-      cosmiconfig-typescript-loader: 6.3.0(@types/node@20.19.3)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3)
+      cosmiconfig: 9.0.1(typescript@5.9.3)
+      cosmiconfig-typescript-loader: 6.3.0(@types/node@20.19.3)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3)
       is-plain-obj: 4.1.0
       lodash.mergewith: 4.6.2
       picocolors: 1.1.1
@@ -3194,21 +3198,21 @@ snapshots:
 
   cookie@1.1.1: {}
 
-  cosmiconfig-typescript-loader@6.3.0(@types/node@20.19.3)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
+  cosmiconfig-typescript-loader@6.3.0(@types/node@20.19.3)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@types/node': 20.19.3
-      cosmiconfig: 9.0.1(typescript@6.0.3)
+      cosmiconfig: 9.0.1(typescript@5.9.3)
       jiti: 2.6.1
-      typescript: 6.0.3
+      typescript: 5.9.3
 
-  cosmiconfig@9.0.1(typescript@6.0.3):
+  cosmiconfig@9.0.1(typescript@5.9.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 6.0.3
+      typescript: 5.9.3
 
   cross-spawn@7.0.6:
     dependencies:
@@ -3463,7 +3467,7 @@ snapshots:
     dependencies:
       fast-deep-equal: 3.1.3
       fast-querystring: 1.1.2
-      safe-regex2: 5.1.0
+      safe-regex2: 5.1.1
 
   find-up@5.0.0:
     dependencies:
@@ -4017,7 +4021,7 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.60.2
       fsevents: 2.3.3
 
-  safe-regex2@5.1.0:
+  safe-regex2@5.1.1:
     dependencies:
       ret: 0.5.0
 
@@ -4151,8 +4155,6 @@ snapshots:
       - supports-color
 
   typescript@5.9.3: {}
-
-  typescript@6.0.3: {}
 
   undefsafe@2.0.5: {}
 
