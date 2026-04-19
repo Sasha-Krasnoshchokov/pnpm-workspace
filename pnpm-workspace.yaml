@@ -1,5 +1,6 @@
 packages:
   - apps/*
+  - configurations/*
   - packages/*
 
 catalog:

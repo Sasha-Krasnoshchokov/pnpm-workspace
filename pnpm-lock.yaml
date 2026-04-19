@@ -75,10 +75,10 @@ importers:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -124,10 +124,10 @@ importers:
         version: 9.39.4
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -153,24 +153,24 @@ importers:
         specifier: 4.0.17
         version: 4.0.17(@types/node@20.19.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.3)
 
-  packages/config-eslint:
+  configurations/eslint:
     dependencies:
       '@eslint/js':
-        specifier: 9.39.4
+        specifier: 'catalog:'
         version: 9.39.4
       eslint:
-        specifier: 9.39.4
+        specifier: 'catalog:'
         version: 9.39.4(jiti@2.6.1)
       typescript:
-        specifier: 5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
       typescript-eslint:
         specifier: 8.54.0
         version: 8.54.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
 
-  packages/config-prettier: {}
+  configurations/prettier: {}
 
-  packages/config-typescript: {}
+  configurations/typescript: {}
 
   packages/database:
     dependencies:
@@ -186,10 +186,10 @@ importers:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
@@ -211,10 +211,10 @@ importers:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
       '@repo/types':
         specifier: workspace:*
         version: link:../types
@@ -223,16 +223,16 @@ importers:
     devDependencies:
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
 
   packages/utils:
     devDependencies:
       '@repo/eslint':
         specifier: workspace:*
-        version: link:../config-eslint
+        version: link:../../configurations/eslint
       '@repo/tsconfig':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../../configurations/typescript
 
 packages:
 
